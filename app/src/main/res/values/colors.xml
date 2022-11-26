@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    //Default colors from app
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+
+    //Primary Contrasts
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    //Off Contrasts
+    <color name="creme_white">#FFFAE3</color>
+    <color name="independence_dark">#413D4A</color>
+
+    //Primary Colors + Variants
+    <color name="ruby">#D81E5B</color>
+    <color name="ruby_var">#F02016</color>
+
+    <color name="discord">#8A4FFF</color>
+    <color name="discord_var">#473CE8</color>
+
+    <color name="winter_dream">#689689</color>
+    <color name="winter_dream_var">#6FAD8A</color>
+
 </resources>
