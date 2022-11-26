@@ -29,16 +29,19 @@
         android:textSize="18dp">
     </TextView>
 
+    <!-- Main Buttons -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <!-- Views are used for spacing between buttons -->
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="0.25"/>
 
+        <!-- Select Image from Gallery -->
         <Button
             android:id="@+id/select_image"
             android:layout_width="wrap_content"
@@ -50,6 +53,7 @@
             android:layout_height="0dp"
             android:layout_weight="0.5"/>
 
+        <!-- Use Camera -->
         <Button
             android:id="@+id/camera"
             android:layout_width="wrap_content"
