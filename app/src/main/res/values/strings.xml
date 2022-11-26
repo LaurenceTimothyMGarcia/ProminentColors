@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Prominent Colors</string>
+
+    //Main Prompt
+    <string name="main_prompt">Select an image or use the camera to scan!</string>
+
+    //Buttons
+    <string name="select_image">Select Image</string>
+    <string name="camera">Use Camera</string>
 </resources>
