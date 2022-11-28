@@ -17,6 +17,15 @@
         android:textSize="28dp">
     </TextView>
 
+    <!-- Place image showing the color here -->
+    <ImageView
+        android:id="@+id/color_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="24dp">
+    </ImageView>
+
     <!-- Show Hexcode with most color -->
     <TextView
         android:id="@+id/color_hexcode"

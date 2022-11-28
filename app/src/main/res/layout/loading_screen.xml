@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@color/creme_white">
+
+    <!-- Shows image -->
+    <ImageView
+        android:id="@+id/image_selected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="24dp">
+    </ImageView>
+
+    <!-- Progress Bar that is just a circle -->
+    <ProgressBar
+        android:id="@+id/indeterminate_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </ProgressBar>
+
+    <!-- Progress Bar that shows progress -->
+    <!-- Use setProgress(int) ranging from 0-100 -->
+    <!--<ProgressBar
+        android:id="@+id/determinate_bar"
+        style="@android:style/Widget.Holo.ProgressBar.Horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:progress="25"/>-->
+
+    <TextView
+        android:id="@+id/result_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="24dp"
+        android:text="@string/loading_prompt"
+        android:textSize="28dp">
+    </TextView>
+
+</LinearLayout>
