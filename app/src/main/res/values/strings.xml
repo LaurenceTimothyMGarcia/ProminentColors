@@ -4,7 +4,15 @@
     <!-- Main Prompt-->
     <string name="main_prompt">Select an image or use the camera to find a color!</string>
 
+    <!-- Results Page -->
+    <string name="result_header">Most frequent color is...</string>
+    <string name="result_hexcode">#HexCode</string>
+
     <!-- Button Texts -->
     <string name="select_image">Select Image</string>
     <string name="camera">Use Camera</string>
+    <string name="copy_hexcode">Copy to Clipboard</string>
+    <string name="use_again">Choose Another Image</string>
+
+
 </resources>

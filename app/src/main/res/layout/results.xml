@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@color/creme_white">
+
+    <TextView
+        android:id="@+id/result_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="24dp"
+        android:text="@string/result_header"
+        android:textSize="28dp">
+    </TextView>
+
+    <!-- Show Hexcode with most color -->
+    <TextView
+        android:id="@+id/color_hexcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="24dp"
+        android:text="@string/result_hexcode"
+        android:textSize="36dp">
+    </TextView>
+
+    <!-- Result Buttons -->
+    <!-- Copy to clipboard -->
+    <Button
+        android:id="@+id/copy_hexcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/copy_hexcode">
+    </Button>
+
+    <!-- Use app again -->
+    <Button
+        android:id="@+id/use_again"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/use_again">
+    </Button>
+
+</LinearLayout>
