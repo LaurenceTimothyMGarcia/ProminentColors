@@ -9,7 +9,7 @@
 
     <!-- Shows image -->
     <ImageView
-        android:id="@+id/image_selected"
+        android:id="@+id/select_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -21,14 +21,16 @@
         android:id="@+id/choose_another"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/use_again"></Button>
+        android:text="@string/use_again">
+    </Button>
 
     <!-- Confirm Image Button -->
     <Button
         android:id="@+id/confirm_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/confirm_image"></Button>
+        android:text="@string/confirm_image">
+    </Button>
 
 
 </LinearLayout>
