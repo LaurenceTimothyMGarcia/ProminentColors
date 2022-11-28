@@ -42,7 +42,8 @@ class MainActivity : AppCompatActivity()
         selectedImage = findViewById(R.id.selected_image)
 
 
-        // startActivityForResult has been deprecated, this opens file explorer to pull image
+        // startActivityForResult has been deprecated
+        // this opens file explorer to pull image
         val getImage = registerForActivityResult(
             ActivityResultContracts.GetContent(),
             ActivityResultCallback {
@@ -50,25 +51,29 @@ class MainActivity : AppCompatActivity()
             }
         )
 
+        val openCamera = registerForActivityResult(
+            ActivityResultContracts.TakePicture(),
+            ActivityResultCallback {
+                //selectedImage.setImageURI(it)
+            }
+        )
+
+        // Pressing the select image button
         selectImageButton.setOnClickListener()
         {
             getImage.launch("image/*")
         }
 
+        // Pressing the camera button opens camera
         useCameraButton.setOnClickListener()
         {
             //Open camera app
-            val camera_intent = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE)
-            {
-                Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            } else {
-                TODO("VERSION.SDK_INT < CUPCAKE")
-            }
-
-            startActivityForResult(camera_intent, pic_id)
+            // Currently doesnt work, will fix later to open camera
+            //openCamera.launch("image/*")
         }
     }
 
+    //Both of these functions are depreicated 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
