@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity()
         }
     }
 
-    //Both of these functions are depreicated 
+    //Both of these functions are depreicated
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
