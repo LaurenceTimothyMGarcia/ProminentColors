@@ -14,6 +14,9 @@ import android.widget.ImageView
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.FileProvider
+import androidx.lifecycle.lifecycleScope
+import java.io.File
 
 class MainActivity : AppCompatActivity()
 {
@@ -24,6 +27,9 @@ class MainActivity : AppCompatActivity()
 
     //Image that user will store
     private lateinit var selectedImage: ImageView
+
+    //Uri for the image taken by the camera
+    private var tempUri: Uri? = null
 
     //constant to compare acitivty code
     companion object
@@ -54,7 +60,9 @@ class MainActivity : AppCompatActivity()
         val openCamera = registerForActivityResult(
             ActivityResultContracts.TakePicture(),
             ActivityResultCallback {
-                //selectedImage.setImageURI(it)
+                if (it) {
+                    selectedImage.setImageURI(tempUri)
+                }
             }
         )
 
@@ -68,8 +76,12 @@ class MainActivity : AppCompatActivity()
         useCameraButton.setOnClickListener()
         {
             //Open camera app
-            // Currently doesnt work, will fix later to open camera
-            //openCamera.launch("image/*")
+            lifecycleScope.launchWhenStarted {
+                getTmpFileUri().let { uri ->
+                    tempUri = uri
+                    openCamera.launch(uri)
+                }
+            }
         }
     }
 
@@ -89,5 +101,14 @@ class MainActivity : AppCompatActivity()
     {
         var i: Intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(intent, 3)
+    }
+
+    //Creates temporary file to store image taken from camera and returns file uri
+    private fun getTmpFileUri(): Uri {
+        val tmpFile = File.createTempFile("tmp_image_file", ".png", cacheDir).apply {
+            createNewFile()
+            deleteOnExit()
+        }
+        return FileProvider.getUriForFile(applicationContext, "${BuildConfig.APPLICATION_ID}.provider", tmpFile)
     }
 }
