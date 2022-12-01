@@ -18,5 +18,7 @@
     <string name="use_again">Choose Another Image</string>
     <string name="confirm_image">Confirm</string>
 
+    <!-- Toasts -->
+    <string name="no_image">There is no image selected</string>
 
 </resources>

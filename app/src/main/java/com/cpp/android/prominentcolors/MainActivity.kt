@@ -11,6 +11,8 @@ import android.provider.MediaStore
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
@@ -24,6 +26,7 @@ class MainActivity : AppCompatActivity()
     //Buttons
     private lateinit var selectImageButton: Button
     private lateinit var useCameraButton: Button
+    private lateinit var confirmImage: Button
 
     //Image that user will store
     private lateinit var selectedImage: ImageView
@@ -45,6 +48,7 @@ class MainActivity : AppCompatActivity()
         //Initializes buttons
         selectImageButton = findViewById(R.id.select_image)
         useCameraButton = findViewById(R.id.camera)
+        confirmImage = findViewById(R.id.confirm_button)
         selectedImage = findViewById(R.id.selected_image)
 
 
@@ -70,6 +74,9 @@ class MainActivity : AppCompatActivity()
         selectImageButton.setOnClickListener()
         {
             getImage.launch("image/*")
+
+            //Set button to selectable after picking image
+            confirmImage.visibility = View.VISIBLE
         }
 
         // Pressing the camera button opens camera
@@ -82,6 +89,25 @@ class MainActivity : AppCompatActivity()
                     openCamera.launch(uri)
                 }
             }
+            confirmImage.visibility = View.VISIBLE
+        }
+
+        //confirm image
+        //make this only show up once image is selected
+        confirmImage.setOnClickListener()
+        {
+            switchToLoading()
+
+            //ideally shoudl check if image is there if not then send toast
+            //current crashes lmao
+            /*if (selectedImage.drawable != null)
+            {
+                switchToLoading()
+            }
+            else
+            {
+                Toast.makeText(applicationContext, getString(R.string.no_image), LENGTH_SHORT)
+            }*/
         }
     }
 
@@ -110,5 +136,21 @@ class MainActivity : AppCompatActivity()
             deleteOnExit()
         }
         return FileProvider.getUriForFile(applicationContext, "${BuildConfig.APPLICATION_ID}.provider", tmpFile)
+    }
+
+    //Switch activities to confirm image
+    private fun switchToLoading()
+    {
+        var switchToLoading : Intent = Intent(this, LoadingScreenActivity::class.java)
+        startActivity(switchToLoading)
+    }
+
+    private fun checkImageSelected()
+    {
+        //Checks if
+        if (selectedImage.drawable != null)
+        {
+            switchToLoading()
+        }
     }
 }
