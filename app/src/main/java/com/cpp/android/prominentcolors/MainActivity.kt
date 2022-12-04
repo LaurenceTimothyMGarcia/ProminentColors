@@ -1,7 +1,10 @@
 package com.cpp.android.prominentcolors
 
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.hardware.Camera
 import android.media.Image
 import android.net.Uri
 import android.os.Build
@@ -30,11 +33,13 @@ class MainActivity : AppCompatActivity()
 
     //Image that user will store
     private lateinit var selectedImage: ImageView
+    //Data container holding the image
+    private lateinit var imageStored: SelectedImage
 
     //Uri for the image taken by the camera
     private var tempUri: Uri? = null
 
-    //constant to compare acitivty code
+    //constant to compare activity code
     companion object
     {
         private const val pic_id = 123
@@ -58,6 +63,7 @@ class MainActivity : AppCompatActivity()
             ActivityResultContracts.GetContent(),
             ActivityResultCallback {
                 selectedImage.setImageURI(it)
+                imageStored = SelectedImage(selectedImage)
             }
         )
 
@@ -66,6 +72,7 @@ class MainActivity : AppCompatActivity()
             ActivityResultCallback {
                 if (it) {
                     selectedImage.setImageURI(tempUri)
+                    imageStored = SelectedImage(selectedImage)
                 }
             }
         )
@@ -80,6 +87,7 @@ class MainActivity : AppCompatActivity()
         }
 
         // Pressing the camera button opens camera
+        //Currently clicking this button breaks the app
         useCameraButton.setOnClickListener()
         {
             //Open camera app
@@ -89,25 +97,24 @@ class MainActivity : AppCompatActivity()
                     openCamera.launch(uri)
                 }
             }
+
             confirmImage.visibility = View.VISIBLE
         }
 
-        //confirm image
+        //confirm image button
         //make this only show up once image is selected
         confirmImage.setOnClickListener()
         {
-            switchToLoading()
-
             //ideally should check if image is there if not then send toast
             //current crashes lmao
-            /*if (selectedImage.drawable != null)
+            if (imageStored != null)
             {
                 switchToLoading()
             }
             else
             {
                 Toast.makeText(applicationContext, getString(R.string.no_image), LENGTH_SHORT)
-            }*/
+            }
         }
     }
 
@@ -123,16 +130,30 @@ class MainActivity : AppCompatActivity()
     //Switch activities to confirm image
     private fun switchToLoading()
     {
+        //Want to transfer the current image here to the next screen
+
         var switchToLoading : Intent = Intent(this, LoadingScreenActivity::class.java)
         startActivity(switchToLoading)
     }
 
+    //Probably not using this code
     private fun checkImageSelected()
     {
         //Checks if
         if (selectedImage.drawable != null)
         {
             switchToLoading()
+        }
+    }
+
+    /** Check if this device has a camera */
+    private fun checkCameraHardware(context: Context): Boolean {
+        if (context.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
+            // this device has a camera
+            return true
+        } else {
+            // no camera on this device
+            return false
         }
     }
 

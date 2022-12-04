@@ -4,17 +4,32 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.widget.ImageView
+import android.widget.ProgressBar
 import androidx.annotation.ColorInt
 import kotlin.math.max
 
 class LoadingScreenActivity : AppCompatActivity()
 {
+    //Image that user will store
+    private lateinit var selectedImage: ImageView
+
+    private lateinit var loadingBar: ProgressBar
+
+    //Data container holding the image
+    private lateinit var imageStored: SelectedImage
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         //Calls loading screen screen xml file
         setContentView(R.layout.loading_screen)
+
+        //Set Image to button and loading bar if we are using that one
+        selectedImage = findViewById(R.id.selected_image)
+        //loadingBar = findViewById(R.id.determinate_bar)   //commented out cuz using radial bar rn
+
+        
     }
 
     //Not sure if this should go here or if y'all mean for it to be in a different activity
@@ -78,5 +93,11 @@ class LoadingScreenActivity : AppCompatActivity()
     private fun colorDistance(a1: Float, r1: Float, g1: Float, b1: Float, a2: Float, r2: Float, g2: Float, b2: Float):  Float
     {
         return 0f;
+    }
+
+    //Allows other classes to access data of image
+    public fun setImage(i: ImageView)
+    {
+        imageStored = SelectedImage(i)
     }
 }
