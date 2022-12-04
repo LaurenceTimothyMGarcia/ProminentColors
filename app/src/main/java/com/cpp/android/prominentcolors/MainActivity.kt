@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity()
         {
             switchToLoading()
 
-            //ideally shoudl check if image is there if not then send toast
+            //ideally should check if image is there if not then send toast
             //current crashes lmao
             /*if (selectedImage.drawable != null)
             {
@@ -109,24 +109,6 @@ class MainActivity : AppCompatActivity()
                 Toast.makeText(applicationContext, getString(R.string.no_image), LENGTH_SHORT)
             }*/
         }
-    }
-
-    //Both of these functions are depreicated
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        //Match request pic id with request code
-        if (requestCode == pic_id)
-        {
-            val photo = data!!.extras!!["data"] as Bitmap?
-            selectedImage.setImageBitmap(photo)
-        }
-    }
-
-    private fun selectImage()
-    {
-        var i: Intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        startActivityForResult(intent, 3)
     }
 
     //Creates temporary file to store image taken from camera and returns file uri
@@ -153,4 +135,22 @@ class MainActivity : AppCompatActivity()
             switchToLoading()
         }
     }
+
+    //Both of these functions are depreicated
+    /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        //Match request pic id with request code
+        if (requestCode == pic_id)
+        {
+            val photo = data!!.extras!!["data"] as Bitmap?
+            selectedImage.setImageBitmap(photo)
+        }
+    }
+
+    private fun selectImage()
+    {
+        var i: Intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(intent, 3)
+    }*/
 }
