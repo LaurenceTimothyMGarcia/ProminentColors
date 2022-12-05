@@ -23,7 +23,7 @@ class LoadingScreenActivity : AppCompatActivity()
 
     //Want to use a hashmap for keeping track of all colors
     //Key would be rgb value, value would be an int of the count
-    private lateinit var colorTracker: HashMap<Color, Int>
+    private lateinit var colorMap: HashMap<Color, Int>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +34,9 @@ class LoadingScreenActivity : AppCompatActivity()
         //Set Image to button and loading bar if we are using that one
         selectedImage = findViewById(R.id.selected_image)
         //loadingBar = findViewById(R.id.determinate_bar)   //commented out cuz using radial bar rn
+
+        //Initialize HashMap
+        colorMap = HashMap<Color, Int>()
 
         //Reads byte array data and transfers to bitmap
         val tempImageByteArray = intent.getByteArrayExtra("selectedImage")
@@ -113,6 +116,63 @@ class LoadingScreenActivity : AppCompatActivity()
     private fun colorDistance(a1: Float, r1: Float, g1: Float, b1: Float, a2: Float, r2: Float, g2: Float, b2: Float):  Float
     {
         return 0f;
+    }
+
+
+    //Going to test my own version of the color picker algo - larry
+    //Uses hashmap mapped <Color, Count (int)>
+    //that way we get a list of all the colors and can select the top 5 if needed
+    private fun scanImage(image: Bitmap)
+    {
+        //Get array of pixels of the image
+        var pixels = Array<Color>(image.width * image.height){Color()}
+        var pixelInd = 0
+
+        //Loops through the entire image to transfer to array
+        for (x in 0..image.width)
+        {
+            for (y in 0..image.height)
+            {
+                pixels[pixelInd] = image.getColor(x, y)
+                pixelInd++
+            }
+        }
+
+        //Sets all array values to hashmap
+        colorMapCounter(pixels)
+
+        //Find top 3 best colors
+        prominentColors()
+    }
+
+    //Goes through the pixel array and adds to colorMap
+    private fun colorMapCounter(pixels: Array<Color>)
+    {
+        for (col in 0..pixels.size)
+        {
+            //If the key exists, add one to the key counter
+            if (colorMap.containsKey(pixels[col]))
+            {
+                val pixelCount: Int? = colorMap[pixels[col]]?.plus(1)
+                if (pixelCount != null)
+                {
+                    colorMap.replace(pixels[col], pixelCount)
+                }
+            }
+            //If the key doesnt exist, set it and initialize count to 1
+            else
+            {
+                colorMap[pixels[col]] = 1
+            }
+        }
+    }
+
+    //Goes through hashmap and gets largest values
+    //Can adjust later to have a certain range
+    private fun prominentColors()
+    {
+        //Search for most used colors
+        //Probably assign it to a list/array
     }
 
 
