@@ -1,9 +1,14 @@
 package com.cpp.android.prominentcolors
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class ResultsActivity : AppCompatActivity()
@@ -34,7 +39,13 @@ class ResultsActivity : AppCompatActivity()
         //If clicks button, copy hexcode to clipboard
         copyToClipboard.setOnClickListener()
         {
+            copyHexcodeToClipboard()
+        }
 
+        //If click button, go to MainActivity
+        useAppAgain.setOnClickListener()
+        {
+            switchToMain()
         }
     }
 
@@ -43,7 +54,18 @@ class ResultsActivity : AppCompatActivity()
     {
         val hexCodeCopy = hexCodeText.text
 
+        val clipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clipData = ClipData.newPlainText("hexcode", hexCodeCopy)
+        clipboardManager.setPrimaryClip(clipData)
 
+        Toast.makeText(this, "Hexcode copied to clipboard", Toast.LENGTH_LONG).show()
+    }
+
+    //Function to go back to MainActivity
+    private fun switchToMain()
+    {
+        val switchToMain = Intent(this, MainActivity::class.java)
+        startActivity(switchToMain)
     }
 
 }
