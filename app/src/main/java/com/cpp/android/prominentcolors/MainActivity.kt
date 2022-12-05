@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.hardware.Camera
+import android.graphics.BitmapFactory
 import android.media.Image
 import android.net.Uri
 import android.os.Build
@@ -20,7 +20,9 @@ import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
+import androidx.core.view.drawToBitmap
 import androidx.lifecycle.lifecycleScope
+import java.io.ByteArrayOutputStream
 import java.io.File
 
 class MainActivity : AppCompatActivity()
@@ -103,10 +105,10 @@ class MainActivity : AppCompatActivity()
 
         //confirm image button
         //make this only show up once image is selected
+        //Goes to loading screena activity
         confirmImage.setOnClickListener()
         {
             //ideally should check if image is there if not then send toast
-            //current crashes lmao
             if (imageStored != null)
             {
                 switchToLoading()
@@ -131,30 +133,19 @@ class MainActivity : AppCompatActivity()
     private fun switchToLoading()
     {
         //Want to transfer the current image here to the next screen
-
         var switchToLoading : Intent = Intent(this, LoadingScreenActivity::class.java)
+        //When sending to loading, we create a bitmap version of the map
+        var stream: ByteArrayOutputStream = ByteArrayOutputStream()
+        selectedImage.drawToBitmap().compress(Bitmap.CompressFormat.PNG, 100, stream)
+
+        //Convert the bitmap version into a byte array
+        val byteArray = stream.toByteArray()
+
+        //Place the byte array with the intent as an "extra"
+        switchToLoading.putExtra("selectedImage", byteArray)
+
+        //Switches activity to loading screen
         startActivity(switchToLoading)
-    }
-
-    //Probably not using this code
-    private fun checkImageSelected()
-    {
-        //Checks if
-        if (selectedImage.drawable != null)
-        {
-            switchToLoading()
-        }
-    }
-
-    /** Check if this device has a camera */
-    private fun checkCameraHardware(context: Context): Boolean {
-        if (context.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
-            // this device has a camera
-            return true
-        } else {
-            // no camera on this device
-            return false
-        }
     }
 
     //Both of these functions are depreicated

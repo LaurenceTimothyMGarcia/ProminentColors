@@ -3,6 +3,7 @@ package com.cpp.android.prominentcolors
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.widget.ImageView
 import android.widget.ProgressBar
@@ -17,7 +18,7 @@ class LoadingScreenActivity : AppCompatActivity()
     private lateinit var loadingBar: ProgressBar
 
     //Data container holding the image
-    private lateinit var imageStored: SelectedImage
+    //private lateinit var imageStored: SelectedImage
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +30,13 @@ class LoadingScreenActivity : AppCompatActivity()
         selectedImage = findViewById(R.id.selected_image)
         //loadingBar = findViewById(R.id.determinate_bar)   //commented out cuz using radial bar rn
 
-        
+        //Reads byte array data and transfers to bitmap
+        val tempImageByteArray = intent.getByteArrayExtra("selectedImage")
+        val bmp: Bitmap? =
+            tempImageByteArray?.let { BitmapFactory.decodeByteArray(tempImageByteArray, 0, it.size) }
+
+        //Places image into the loading
+        selectedImage.setImageBitmap(bmp)
     }
 
     //Not sure if this should go here or if y'all mean for it to be in a different activity
@@ -93,11 +100,5 @@ class LoadingScreenActivity : AppCompatActivity()
     private fun colorDistance(a1: Float, r1: Float, g1: Float, b1: Float, a2: Float, r2: Float, g2: Float, b2: Float):  Float
     {
         return 0f;
-    }
-
-    //Allows other classes to access data of image
-    public fun setImage(i: ImageView)
-    {
-        imageStored = SelectedImage(i)
     }
 }
