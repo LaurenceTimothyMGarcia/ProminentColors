@@ -15,6 +15,7 @@ class ResultsActivity : AppCompatActivity()
 {
     //UI Elements
     //Most prominent color
+    //use a white square and change its rgb value
     private lateinit var mostUsedColor: ImageView
     //Hexcode Text
     private lateinit var hexCodeText: TextView

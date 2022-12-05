@@ -1,5 +1,6 @@
 package com.cpp.android.prominentcolors
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.graphics.Bitmap
@@ -20,6 +21,10 @@ class LoadingScreenActivity : AppCompatActivity()
     //Data container holding the image
     //private lateinit var imageStored: SelectedImage
 
+    //Want to use a hashmap for keeping track of all colors
+    //Key would be rgb value, value would be an int of the count
+    private lateinit var colorTracker: HashMap<Color, Int>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -37,6 +42,14 @@ class LoadingScreenActivity : AppCompatActivity()
 
         //Places image into the loading
         selectedImage.setImageBitmap(bmp)
+
+
+        //Debugging button to go to result page
+        //Remove in final app
+        selectedImage.setOnClickListener()
+        {
+            switchToResults()
+        }
     }
 
     //Not sure if this should go here or if y'all mean for it to be in a different activity
@@ -100,5 +113,17 @@ class LoadingScreenActivity : AppCompatActivity()
     private fun colorDistance(a1: Float, r1: Float, g1: Float, b1: Float, a2: Float, r2: Float, g2: Float, b2: Float):  Float
     {
         return 0f;
+    }
+
+
+    //
+    private fun switchToResults()
+    {
+        var switchToResults : Intent = Intent(this, ResultsActivity::class.java)
+
+        //want to place an extra with the hexvalue
+        //switchToResults.putExtra("HexCode", COLOR.toSTRING)
+
+        startActivity(switchToResults)
     }
 }
