@@ -21,6 +21,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProminentColors"
         tools:targetApi="31">
+
+        <!-- Main Activity -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -30,12 +32,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Loading Screen Activity -->
         <activity android:name=".LoadingScreenActivity">
 
         </activity>
+
+        <!-- Results Activity -->
         <activity android:name=".ResultsActivity">
-            
+
         </activity>
+        
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
