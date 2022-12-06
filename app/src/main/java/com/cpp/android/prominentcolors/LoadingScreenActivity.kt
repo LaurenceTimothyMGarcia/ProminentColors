@@ -9,6 +9,9 @@ import android.graphics.Color
 import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.annotation.ColorInt
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 import kotlin.math.max
 
 class LoadingScreenActivity : AppCompatActivity()
@@ -24,6 +27,10 @@ class LoadingScreenActivity : AppCompatActivity()
     //Want to use a hashmap for keeping track of all colors
     //Key would be rgb value, value would be an int of the count
     private lateinit var colorMap: HashMap<Color, Int>
+
+    //Pair is used to hold most prominent color
+    //Replace with an array/list later
+    private lateinit var prominentCol: Pair<Color, Int>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -142,7 +149,8 @@ class LoadingScreenActivity : AppCompatActivity()
         colorMapCounter(pixels)
 
         //Find top 3 best colors
-        prominentColors()
+        //currently only finds highest color
+        prominentCol = prominentColors()
     }
 
     //Goes through the pixel array and adds to colorMap
@@ -169,10 +177,33 @@ class LoadingScreenActivity : AppCompatActivity()
 
     //Goes through hashmap and gets largest values
     //Can adjust later to have a certain range
-    private fun prominentColors()
+    private fun prominentColors(): Pair<Color, Int>
     {
         //Search for most used colors
         //Probably assign it to a list/array
+        //var prominentColors: Array<Pair<Color, Int>> = Array<Pair<Color, Int>>(6)
+
+        //Testing out just one for now to make sure it works
+        //Need to initialize this with the first pair, but isnt working
+        var prominentColor: Pair<Color, Int>
+
+        //prominentColor =
+
+        for (mutableEntry in colorMap)
+        {
+            //Checks if array is empty
+            if (prominentColor != null)
+            {
+                prominentColor = mutableEntry.toPair()
+            }
+            //looks for if next color is higher than other
+            else if (mutableEntry.value >= prominentColor.second)
+            {
+                prominentColor = mutableEntry.toPair()
+            }
+        }
+
+        return prominentColor
     }
 
 
@@ -182,7 +213,7 @@ class LoadingScreenActivity : AppCompatActivity()
         var switchToResults : Intent = Intent(this, ResultsActivity::class.java)
 
         //want to place an extra with the hexvalue
-        //switchToResults.putExtra("HexCode", COLOR.toSTRING)
+        switchToResults.putExtra("HexCode", prominentCol.first.toString())
 
         startActivity(switchToResults)
     }
