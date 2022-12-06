@@ -1,21 +1,16 @@
 package com.cpp.android.prominentcolors
 
 import android.content.Intent
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import android.widget.ProgressBar
-import androidx.annotation.ColorInt
-import androidx.core.view.drawToBitmap
-import androidx.loader.content.AsyncTaskLoader
+import androidx.appcompat.app.AppCompatActivity
+import java.lang.String
 import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
-import kotlin.math.max
 
 class LoadingScreenActivity : AppCompatActivity()
 {
@@ -244,8 +239,10 @@ class LoadingScreenActivity : AppCompatActivity()
     {
         var switchToResults : Intent = Intent(this, ResultsActivity::class.java)
 
+        val hexColor = String.format("#%06X", 0xFFFFFF and prominentCol.first.toArgb())
+
         //want to place an extra with the hexvalue
-        switchToResults.putExtra("HexCode", prominentCol.first.toString())
+        switchToResults.putExtra("HexCode", hexColor)
         switchToResults.putExtra("HexCodeVal", prominentCol.first.toArgb())
         switchToResults.putExtra("Count", prominentCol.second)
 
