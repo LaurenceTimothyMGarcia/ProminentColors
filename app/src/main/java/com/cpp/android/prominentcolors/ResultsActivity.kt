@@ -36,6 +36,11 @@ class ResultsActivity : AppCompatActivity()
         copyToClipboard = findViewById(R.id.copy_hexcode)
         useAppAgain = findViewById(R.id.use_again)
 
+        //Gets hexcode text from bundle in loading
+        hexCodeText.text = intent.getStringExtra("HexCode")
+        //Set argb value
+        mostUsedColor.setColorFilter(intent.getIntExtra("HexCodeVal"))
+
 
         //Set mostUsedColor to white box
         //Initialize white box to hexcode value

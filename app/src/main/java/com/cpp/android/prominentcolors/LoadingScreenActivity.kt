@@ -187,17 +187,17 @@ class LoadingScreenActivity : AppCompatActivity()
         //Need to initialize this with the first pair, but isnt working
         var prominentColor: Pair<Color, Int>
 
-        //prominentColor =
+        prominentColor = Pair(Color(), 0)
 
         for (mutableEntry in colorMap)
         {
             //Checks if array is empty
-            if (prominentColor != null)
+            /*if (prominentColor != null)
             {
                 prominentColor = mutableEntry.toPair()
-            }
+            }*/
             //looks for if next color is higher than other
-            else if (mutableEntry.value >= prominentColor.second)
+            if (mutableEntry.value >= prominentColor.second)
             {
                 prominentColor = mutableEntry.toPair()
             }
@@ -214,6 +214,8 @@ class LoadingScreenActivity : AppCompatActivity()
 
         //want to place an extra with the hexvalue
         switchToResults.putExtra("HexCode", prominentCol.first.toString())
+        switchToResults.putExtra("HexCodeVal", prominentCol.first.toArgb())
+        switchToResults.putExtra("Count", prominentCol.second)
 
         startActivity(switchToResults)
     }
