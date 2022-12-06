@@ -39,7 +39,7 @@ class ResultsActivity : AppCompatActivity()
         //Gets hexcode text from bundle in loading
         hexCodeText.text = intent.getStringExtra("HexCode")
         //Set argb value
-        mostUsedColor.setColorFilter(intent.getIntExtra("HexCodeVal"))
+        mostUsedColor.setColorFilter(intent.getIntExtra("HexCodeVal", 1))
 
 
         //Set mostUsedColor to white box

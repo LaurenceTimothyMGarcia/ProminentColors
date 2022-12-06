@@ -9,6 +9,8 @@ import android.graphics.Color
 import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.annotation.ColorInt
+import androidx.core.view.drawToBitmap
+import androidx.loader.content.AsyncTaskLoader
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
@@ -60,6 +62,23 @@ class LoadingScreenActivity : AppCompatActivity()
         {
             switchToResults()
         }
+    }
+
+    //Runs code for color scanner after view is created
+    //currently crashes due to bitmap issue
+    override fun onStart()
+    {
+        super.onStart()
+
+        val tempImageByteArray = intent.getByteArrayExtra("selectedImage")
+        val bmp: Bitmap? =
+            tempImageByteArray?.let { BitmapFactory.decodeByteArray(tempImageByteArray, 0, it.size) }
+
+        if (bmp != null)
+        {
+            scanImage(bmp)
+        }
+        switchToResults()
     }
 
     //Not sure if this should go here or if y'all mean for it to be in a different activity
@@ -140,6 +159,7 @@ class LoadingScreenActivity : AppCompatActivity()
         {
             for (y in 0..image.height)
             {
+                //Error y must be < bitmap.height()
                 pixels[pixelInd] = image.getColor(x, y)
                 pixelInd++
             }
