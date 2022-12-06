@@ -37,6 +37,10 @@ class ResultsActivity : AppCompatActivity()
         useAppAgain = findViewById(R.id.use_again)
 
 
+        //Set mostUsedColor to white box
+        //Initialize white box to hexcode value
+        //mostUsedColor.setImageIcon(R.layout.colo)
+
         //If clicks button, copy hexcode to clipboard
         copyToClipboard.setOnClickListener()
         {
