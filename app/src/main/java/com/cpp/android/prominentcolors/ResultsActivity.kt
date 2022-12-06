@@ -39,7 +39,7 @@ class ResultsActivity : AppCompatActivity()
 
         //Set mostUsedColor to white box
         //Initialize white box to hexcode value
-        //mostUsedColor.setImageIcon(R.layout.colo)
+        mostUsedColor.setImageResource(R.drawable.color_hex)
 
         //If clicks button, copy hexcode to clipboard
         copyToClipboard.setOnClickListener()
