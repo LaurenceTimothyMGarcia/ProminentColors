@@ -224,7 +224,7 @@ class LoadingScreenActivity : AppCompatActivity()
                 prominentColor = mutableEntry.toPair()
             }*/
             //looks for if next color is higher than other
-            if (mutableEntry.value >= prominentColor.second)
+            if (mutableEntry.value > prominentColor.second)
             {
                 prominentColor = mutableEntry.toPair()
             }
