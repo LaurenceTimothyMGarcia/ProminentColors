@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.util.Log
 import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.annotation.ColorInt
@@ -33,6 +34,8 @@ class LoadingScreenActivity : AppCompatActivity()
     //Pair is used to hold most prominent color
     //Replace with an array/list later
     private lateinit var prominentCol: Pair<Color, Int>
+
+    private val TAG = "LoadingScreenActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -155,11 +158,16 @@ class LoadingScreenActivity : AppCompatActivity()
         var pixelInd = 0
 
         //Loops through the entire image to transfer to array
-        for (x in 0..image.width)
+        for (x in 0..(image.width - 1))
         {
-            for (y in 0..image.height)
+            for (y in 0..(image.height - 1))
             {
                 //Error y must be < bitmap.height()
+                //Log.d(TAG, "X: " + x)
+                //Log.d(TAG, "Y: " + y)
+
+                //Log.d(TAG, "Image Width: " + image.width)
+                //Log.d(TAG, "Image Height: " + image.height)
                 pixels[pixelInd] = image.getColor(x, y)
                 pixelInd++
             }
@@ -176,7 +184,7 @@ class LoadingScreenActivity : AppCompatActivity()
     //Goes through the pixel array and adds to colorMap
     private fun colorMapCounter(pixels: Array<Color>)
     {
-        for (col in 0..pixels.size)
+        for (col in 0..(pixels.size - 1))
         {
             //If the key exists, add one to the key counter
             if (colorMap.containsKey(pixels[col]))
