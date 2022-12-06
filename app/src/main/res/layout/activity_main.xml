@@ -46,6 +46,7 @@
             android:id="@+id/select_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/gallery_icon"
             android:text="@string/select_image"></Button>
 
         <View
@@ -58,6 +59,7 @@
             android:id="@+id/camera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/camera_icon"
             android:text="@string/camera"></Button>
 
         <View

@@ -21,6 +21,7 @@
         android:id="@+id/choose_another"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/gallery_icon"
         android:text="@string/use_again">
     </Button>
 
@@ -29,6 +30,7 @@
         android:id="@+id/confirm_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/check_icon"
         android:text="@string/confirm_image">
     </Button>
 

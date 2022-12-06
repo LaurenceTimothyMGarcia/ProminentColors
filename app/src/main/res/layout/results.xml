@@ -43,6 +43,7 @@
         android:id="@+id/copy_hexcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/copy_icon"
         android:text="@string/copy_hexcode">
     </Button>
 
@@ -51,6 +52,7 @@
         android:id="@+id/use_again"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/gallery_icon"
         android:text="@string/use_again">
     </Button>
 
