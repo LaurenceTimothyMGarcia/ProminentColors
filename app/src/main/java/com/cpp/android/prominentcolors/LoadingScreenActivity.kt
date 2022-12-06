@@ -81,6 +81,8 @@ class LoadingScreenActivity : AppCompatActivity()
         {
             scanImage(bmp)
         }
+
+        Log.d(TAG, "COLORMAP: " + colorMap.toString())
         switchToResults()
     }
 
@@ -179,6 +181,8 @@ class LoadingScreenActivity : AppCompatActivity()
         //Find top 3 best colors
         //currently only finds highest color
         prominentCol = prominentColors()
+        Log.d(TAG, "PromintentColor: " + prominentCol)
+
     }
 
     //Goes through the pixel array and adds to colorMap

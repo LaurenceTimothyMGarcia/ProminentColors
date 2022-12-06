@@ -5,6 +5,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -23,6 +24,8 @@ class ResultsActivity : AppCompatActivity()
     private lateinit var copyToClipboard: Button
     private lateinit var useAppAgain: Button
 
+    private val TAG = "ResultsActivity"
+
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
@@ -38,13 +41,14 @@ class ResultsActivity : AppCompatActivity()
 
         //Gets hexcode text from bundle in loading
         hexCodeText.text = intent.getStringExtra("HexCode")
-        //Set argb value
-        mostUsedColor.setColorFilter(intent.getIntExtra("HexCodeVal", 1))
-
+        Log.d(TAG, "HexCode: " + intent.getStringExtra("HexCode"))
 
         //Set mostUsedColor to white box
         //Initialize white box to hexcode value
         mostUsedColor.setImageResource(R.drawable.color_hex)
+        //Set argb value
+        mostUsedColor.setColorFilter(intent.getIntExtra("HexCodeVal", 1))
+        Log.d(TAG, "Color Filter: " + intent.getIntExtra("HexCodeVal", 1))
 
         //If clicks button, copy hexcode to clipboard
         copyToClipboard.setOnClickListener()
