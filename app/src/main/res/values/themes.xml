@@ -15,10 +15,10 @@
         <item name="colorTertiary">@color/winter_dream</item>
 
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorOnPrimary</item>
 
         <!-- Customize your theme here. -->
         <item name="android:textColor">@color/black</item>
-        <item name="background">@color/creme_white</item>
+        <item name="android:background">@color/creme_white</item>
     </style>
 </resources>
