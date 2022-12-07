@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical"
-    android:background="@color/creme_white">
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/app_name"
