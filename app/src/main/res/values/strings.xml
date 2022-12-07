@@ -10,6 +10,7 @@
     <!-- Results Page -->
     <string name="result_header">Most frequent color is...</string>
     <string name="result_hexcode">#HexCode</string>
+    <string name="result_col_count">Color Count</string>
 
     <!-- Button Texts -->
     <string name="select_image">Select Image</string>

@@ -69,14 +69,6 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/selected_image"
-        android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:scaleType="centerCrop"
-        android:padding="24dp">
-    </ImageView>
-
     <Button
         android:id="@+id/confirm_button"
         android:layout_width="wrap_content"
@@ -84,5 +76,12 @@
         android:text="@string/confirm_image"
         android:visibility="invisible">
     </Button>
+
+    <ImageView
+        android:id="@+id/selected_image"
+        android:layout_width="75pt"
+        android:layout_height="75pt"
+        android:scaleType="centerCrop">
+    </ImageView>
 
 </LinearLayout>

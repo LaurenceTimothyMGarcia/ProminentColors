@@ -20,6 +20,9 @@ class ResultsActivity : AppCompatActivity()
     private lateinit var mostUsedColor: ImageView
     //Hexcode Text
     private lateinit var hexCodeText: TextView
+    //HexCode Count (mostly for debugging)
+    //Maybe change to percentage later on
+    private lateinit var hexCodeCount: TextView
     //Buttons
     private lateinit var copyToClipboard: Button
     private lateinit var useAppAgain: Button
@@ -38,6 +41,7 @@ class ResultsActivity : AppCompatActivity()
         hexCodeText = findViewById(R.id.color_hexcode)
         copyToClipboard = findViewById(R.id.copy_hexcode)
         useAppAgain = findViewById(R.id.use_again)
+        hexCodeCount = findViewById(R.id.color_count)
 
         //Gets hexcode text from bundle in loading
         hexCodeText.text = intent.getStringExtra("HexCode")
@@ -49,6 +53,10 @@ class ResultsActivity : AppCompatActivity()
         //Set argb value
         mostUsedColor.setColorFilter(intent.getIntExtra("HexCodeVal", 1))
         Log.d(TAG, "Color Filter: " + intent.getIntExtra("HexCodeVal", 1))
+
+        var hexcodeText: String = "Count: " + intent.getIntExtra("Count", 1).toString()
+        Log.d(TAG, hexcodeText)
+        hexCodeCount.text = hexcodeText
 
         //If clicks button, copy hexcode to clipboard
         copyToClipboard.setOnClickListener()

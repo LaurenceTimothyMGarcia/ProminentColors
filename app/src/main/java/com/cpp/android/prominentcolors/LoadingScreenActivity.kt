@@ -34,6 +34,7 @@ class LoadingScreenActivity : AppCompatActivity()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d(TAG, "Loading Create")
 
         //Calls loading screen screen xml file
         setContentView(R.layout.loading_screen)
@@ -67,6 +68,7 @@ class LoadingScreenActivity : AppCompatActivity()
     override fun onStart()
     {
         super.onStart()
+        Log.d(TAG, "Loading Start")
 
         val tempImageByteArray = intent.getByteArrayExtra("selectedImage")
         val bmp: Bitmap? =
@@ -154,6 +156,11 @@ class LoadingScreenActivity : AppCompatActivity()
         var pixels = Array<Color>(image.width * image.height){Color()}
         var pixelInd = 0
 
+        //Debugging statements
+        Log.d(TAG, "Image Width: " + image.width)
+        Log.d(TAG, "Image Height: " + image.height)
+        Log.d(TAG, "Pixel Amount: ${pixels.size}")
+
         //Loops through the entire image to transfer to array
         for (x in 0..(image.width - 1))
         {
@@ -176,7 +183,7 @@ class LoadingScreenActivity : AppCompatActivity()
         //Find top 3 best colors
         //currently only finds highest color
         prominentCol = prominentColors()
-        Log.d(TAG, "PromintentColor: " + prominentCol)
+        Log.d(TAG, "PromintentColor: $prominentCol")
 
     }
 
@@ -240,6 +247,8 @@ class LoadingScreenActivity : AppCompatActivity()
         switchToResults.putExtra("HexCode", hexColor)
         switchToResults.putExtra("HexCodeVal", prominentCol.first.toArgb())
         switchToResults.putExtra("Count", prominentCol.second)
+
+        Log.d(TAG, "HEXCODE COUNT: ${prominentCol.second}")
 
         startActivity(switchToResults)
     }
