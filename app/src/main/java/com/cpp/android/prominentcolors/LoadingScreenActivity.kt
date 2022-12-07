@@ -218,11 +218,6 @@ class LoadingScreenActivity : AppCompatActivity()
 
         for (mutableEntry in colorMap)
         {
-            //Checks if array is empty
-            /*if (prominentColor != null)
-            {
-                prominentColor = mutableEntry.toPair()
-            }*/
             //looks for if next color is higher than other
             if (mutableEntry.value > prominentColor.second)
             {

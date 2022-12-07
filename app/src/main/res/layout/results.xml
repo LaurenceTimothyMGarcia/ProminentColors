@@ -17,25 +17,32 @@
         android:textSize="28dp">
     </TextView>
 
-    <!-- Place image showing the color here -->
-    <ImageView
-        android:id="@+id/color_image"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="24dp">
-    </ImageView>
+        android:gravity="center">
+            <!-- Place image showing the color here -->
+            <ImageView
+                android:id="@+id/color_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="48dp">
+            </ImageView>
 
-    <!-- Show Hexcode with most color -->
-    <TextView
-        android:id="@+id/color_hexcode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="24dp"
-        android:text="@string/result_hexcode"
-        android:textSize="36dp">
-    </TextView>
+            <!-- Show Hexcode with most color -->
+            <TextView
+                android:id="@+id/color_hexcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="24dp"
+                android:text="@string/result_hexcode"
+                android:textSize="36dp">
+            </TextView>
+    </LinearLayout>
+
+
 
     <!-- Result Buttons -->
     <!-- Copy to clipboard -->
