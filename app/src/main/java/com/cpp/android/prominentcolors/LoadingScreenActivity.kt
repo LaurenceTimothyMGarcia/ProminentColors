@@ -30,6 +30,9 @@ class LoadingScreenActivity : AppCompatActivity()
     //Replace with an array/list later
     private lateinit var prominentCol: Pair<Color, Int>
 
+    //Color tolerance to allow gradient
+    private val colorTolerance = 0.05
+
     private val TAG = "LoadingScreenActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -216,12 +219,12 @@ class LoadingScreenActivity : AppCompatActivity()
                 }
                 //Checks if color rgb values is 5% greater or less than a color already
                 //existing in the hashmap
-                else if ((pixels[col].red() >= (mutableEntry.key.red() - 0.05) &&
-                            pixels[col].red() <= (mutableEntry.key.red() + 0.05)) &&
-                        (pixels[col].blue() >= (mutableEntry.key.blue() - 0.05) &&
-                                pixels[col].blue() <= (mutableEntry.key.blue() + 0.05)) &&
-                        (pixels[col].green() >= (mutableEntry.key.green() - 0.05) &&
-                                pixels[col].green() <= (mutableEntry.key.green() + 0.05)))
+                else if ((pixels[col].red() >= (mutableEntry.key.red() - colorTolerance) &&
+                            pixels[col].red() <= (mutableEntry.key.red() + colorTolerance)) &&
+                        (pixels[col].blue() >= (mutableEntry.key.blue() - colorTolerance) &&
+                                pixels[col].blue() <= (mutableEntry.key.blue() + colorTolerance)) &&
+                        (pixels[col].green() >= (mutableEntry.key.green() - colorTolerance) &&
+                                pixels[col].green() <= (mutableEntry.key.green() + colorTolerance)))
                 {
                     //Adds to existing color
                     val pixelCount: Int? = mutableEntry.value.plus(1)
