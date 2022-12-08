@@ -27,6 +27,11 @@ class ResultsActivity : AppCompatActivity()
     private lateinit var copyToClipboard: Button
     private lateinit var useAppAgain: Button
 
+    //Arrays from bundles
+    private lateinit var hexColorString: Array<String>
+    private lateinit var hexColorValue: IntArray
+    private lateinit var hexColorCount: IntArray
+
     private val TAG = "ResultsActivity"
 
     override fun onCreate(savedInstanceState: Bundle?)
@@ -43,20 +48,28 @@ class ResultsActivity : AppCompatActivity()
         useAppAgain = findViewById(R.id.use_again)
         hexCodeCount = findViewById(R.id.color_count)
 
+
+        //GETS VALUES FROM BUNDLES
+        hexColorString = intent.getStringArrayExtra("HexCodeString")!!
+        hexColorValue = intent.getIntArrayExtra("HexCodeValue")!!
+        hexColorCount = intent.getIntArrayExtra("HexCodeCount")!!
+
+
         //Gets hexcode text from bundle in loading
-        hexCodeText.text = intent.getStringExtra("HexCode")
-        Log.d(TAG, "HexCode: " + intent.getStringExtra("HexCode"))
+        hexCodeText.text = hexColorString[0]
 
         //Set mostUsedColor to white box
         //Initialize white box to hexcode value
         mostUsedColor.setImageResource(R.drawable.color_hex)
         //Set argb value
-        mostUsedColor.setColorFilter(intent.getIntExtra("HexCodeVal", 1))
-        Log.d(TAG, "Color Filter: " + intent.getIntExtra("HexCodeVal", 1))
+        mostUsedColor.setColorFilter(hexColorValue[0])
 
-        var hexcodeText: String = "Count: " + intent.getIntExtra("Count", 1).toString()
-        Log.d(TAG, hexcodeText)
-        hexCodeCount.text = hexcodeText
+        //Shows Count
+        hexCodeCount.text = "Count: ${hexColorCount[0].toString()}"
+
+
+        //Create buttons on left and right to rotate side of array
+        //Create textview to show "placement" of array
 
         //If clicks button, copy hexcode to clipboard
         copyToClipboard.setOnClickListener()

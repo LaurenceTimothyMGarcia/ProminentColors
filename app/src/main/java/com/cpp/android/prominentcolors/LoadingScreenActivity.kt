@@ -355,8 +355,8 @@ class LoadingScreenActivity : AppCompatActivity()
 
         //Create 3 Arrays, HexColor String, HexColor ARGB Value, HexColor Count
         var hexColorString: Array<String> = Array<String>(colorReturn) { String("") }
-        var hexColorValue: Array<Int> = Array<Int>(colorReturn) { 0 }
-        var hexColorCount: Array<Int> = Array<Int>(colorReturn) { 0 }
+        var hexColorValue: IntArray = IntArray(colorReturn)
+        var hexColorCount: IntArray = IntArray(colorReturn)
 
         //Messed up something here, want to pack the ARRAY into the extra not the other value
         for (index in 0 until colorReturn)
@@ -372,9 +372,9 @@ class LoadingScreenActivity : AppCompatActivity()
         }
 
         //Return the arrays
-        switchToResults.putExtra("HexCode", hexColorString)
-        switchToResults.putExtra("HexCodeVal", hexColorValue)
-        switchToResults.putExtra("Count", hexColorCount)
+        switchToResults.putExtra("HexCodeString", hexColorString)
+        switchToResults.putExtra("HexCodeValue", hexColorValue)
+        switchToResults.putExtra("HexCodeCount", hexColorCount)
 
         //Log.d(TAG, "HEXCODE COUNT: ${prominentCol.second}")
 
