@@ -37,6 +37,9 @@ class LoadingScreenActivity : AppCompatActivity()
     //Color tolerance to allow gradient
     private val colorTolerance = 0.05
 
+    //Amount of colors to return
+    private val colorReturn = 5
+
     private val TAG = "LoadingScreenActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -337,6 +340,9 @@ class LoadingScreenActivity : AppCompatActivity()
             }
         }
 
+        //Debugging print to get list to see if in order
+        Log.d(TAG, "LinkedList: $prominentCols")
+
         //Returns linkedList of pairs in order
         return prominentCols
     }
@@ -347,10 +353,24 @@ class LoadingScreenActivity : AppCompatActivity()
     {
         var switchToResults : Intent = Intent(this, ResultsActivity::class.java)
 
-        val hexColor = String.format("#%06X", 0xFFFFFF and prominentCol.first.toArgb())
+        //Create 3 Arrays, HexColor String, HexColor ARGB Value, HexColor Count
+        var hexColorString: Array<String> = Array<String>(colorReturn) { String("") }
+        var hexColorValue: Array<Int> = Array<Int>(colorReturn) { 0 }
+        var hexColorCount: Array<Int> = Array<Int>(colorReturn) { 0 }
 
-        //want to place an extra with the hexvalue
-        switchToResults.putExtra("HexCode", hexColor)
+        //Messed up something here, want to pack the ARRAY into the extra not the other value
+        for (index in 0 until colorReturn)
+        {
+            val hexColorStr = String.format("#%06X", 0xFFFFFF and prominentCol.first.toArgb())
+
+            //want to place an extra with the hexvalue
+            switchToResults.putExtra("HexCode", hexColorStr)
+            switchToResults.putExtra("HexCodeVal", prominentCol.first.toArgb())
+            switchToResults.putExtra("Count", prominentCol.second)
+        }
+
+        //Return the arrays
+        switchToResults.putExtra("HexCode", hexColorString)
         switchToResults.putExtra("HexCodeVal", prominentCol.first.toArgb())
         switchToResults.putExtra("Count", prominentCol.second)
 
