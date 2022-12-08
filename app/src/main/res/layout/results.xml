@@ -25,8 +25,7 @@
                 android:id="@+id/color_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="48dp">
+                android:gravity="center">
             </ImageView>
 
             <!-- Show Hexcode with most color -->

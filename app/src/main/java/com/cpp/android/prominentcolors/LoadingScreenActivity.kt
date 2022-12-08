@@ -190,10 +190,60 @@ class LoadingScreenActivity : AppCompatActivity()
     //Goes through the pixel array and adds to colorMap
     private fun colorMapCounter(pixels: Array<Color>)
     {
-        for (col in 0..(pixels.size - 1))
+        colorMap[pixels[0]] = 1
+
+        //Goes through entire pixel array
+        for (col in 1..(pixels.size - 1))
         {
+            //If it adds an array, add here
+            var foundVariant: Boolean = false
+
+            //Goes through each color in the colormap
+            for (mutableEntry in colorMap)
+            {
+                //If the key exists, add one to the key counter
+                if (colorMap.containsKey(pixels[col]))
+                {
+                    val pixelCount: Int? = colorMap[pixels[col]]?.plus(1)
+
+                    if (pixelCount != null)
+                    {
+                        colorMap.replace(pixels[col], pixelCount)
+                    }
+
+                    foundVariant = true
+                    break
+                }
+                //Checks if color rgb values is 5% greater or less than a color already
+                //existing in the hashmap
+                else if ((pixels[col].red() >= (mutableEntry.key.red() - 0.05) ||
+                            pixels[col].red() <= (mutableEntry.key.red() + 0.05)) &&
+                        (pixels[col].blue() >= (mutableEntry.key.blue() - 0.05) ||
+                                pixels[col].blue() <= (mutableEntry.key.blue() + 0.05)) &&
+                        (pixels[col].green() >= (mutableEntry.key.green() - 0.05) ||
+                                pixels[col].green() <= (mutableEntry.key.green() + 0.05)))
+                {
+                    //Adds to existing color
+                    val pixelCount: Int? = mutableEntry.value.plus(1)
+
+                    if (pixelCount != null)
+                    {
+                        colorMap.replace(mutableEntry.key, pixelCount)
+                    }
+
+                    foundVariant = true
+                    break
+                }
+            }
+
+            if (!foundVariant)
+            {
+                colorMap[pixels[col]] = 1
+            }
+
+            //Old algorithm
             //If the key exists, add one to the key counter
-            if (colorMap.containsKey(pixels[col]))
+            /*if (colorMap.containsKey(pixels[col]))
             {
                 val pixelCount: Int? = colorMap[pixels[col]]?.plus(1)
                 if (pixelCount != null)
@@ -205,7 +255,7 @@ class LoadingScreenActivity : AppCompatActivity()
             else
             {
                 colorMap[pixels[col]] = 1
-            }
+            }*/
         }
     }
 
