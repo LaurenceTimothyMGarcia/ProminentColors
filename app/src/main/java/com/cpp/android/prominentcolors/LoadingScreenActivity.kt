@@ -30,6 +30,10 @@ class LoadingScreenActivity : AppCompatActivity()
     //Replace with an array/list later
     private lateinit var prominentCol: Pair<Color, Int>
 
+    //Linked List of Pairs that hold the top prominent colors
+    //Implementation still in progress
+    private lateinit var prominentColors: LinkedList<Pair<Color, Int>>
+
     //Color tolerance to allow gradient
     private val colorTolerance = 0.05
 
@@ -286,6 +290,55 @@ class LoadingScreenActivity : AppCompatActivity()
         }
 
         return prominentColor
+    }
+
+    //Run through hashmap and get multiple values
+    private fun prominentColorsImproved(): LinkedList<Pair<Color, Int>>
+    {
+        //Search for top most used colors
+        //place colors on linkedlist
+        //Will fixed up in another method
+        var prominentCols: LinkedList<Pair<Color, Int>> = LinkedList<Pair<Color, Int>>()
+
+        for (mutableEntry in colorMap)
+        {
+            //Check if first run, then add value
+            if (prominentCols.isNullOrEmpty())
+            {
+                prominentCols.add(mutableEntry.toPair())
+                continue
+            }
+
+            //Check if its larger than the largest
+            if (mutableEntry.value >= prominentCols[0].second)
+            {
+                prominentCols.addFirst(mutableEntry.toPair())
+                continue
+            }
+
+            //Checks if its less than the last
+            if (mutableEntry.value < prominentCols.last.second)
+            {
+                prominentCols.addLast(mutableEntry.toPair())
+                continue
+            }
+
+            //Goes through each color in the list
+            //Sees if it is inbetween
+            for (colIndex in 1 until prominentCols.size)
+            {
+                //Inserts new color in between the values
+                if (mutableEntry.value >= prominentCols[colIndex].second &&
+                        mutableEntry.value < prominentCols[0].second)
+                {
+                    prominentCols.add(colIndex, mutableEntry.toPair())
+                    break
+                }
+            }
+        }
+
+        //Returns linkedList of pairs in order
+        return prominentCols
     }
 
 
