@@ -361,20 +361,22 @@ class LoadingScreenActivity : AppCompatActivity()
         //Messed up something here, want to pack the ARRAY into the extra not the other value
         for (index in 0 until colorReturn)
         {
-            val hexColorStr = String.format("#%06X", 0xFFFFFF and prominentCol.first.toArgb())
+            //Array of hexcode Strings
+            hexColorString[index] = String(String.format("#%06X", 0xFFFFFF and prominentColors[index].first.toArgb()))
 
-            //want to place an extra with the hexvalue
-            switchToResults.putExtra("HexCode", hexColorStr)
-            switchToResults.putExtra("HexCodeVal", prominentCol.first.toArgb())
-            switchToResults.putExtra("Count", prominentCol.second)
+            //Array of hexcode ints
+            hexColorValue[index] = prominentColors[index].first.toArgb()
+
+            //Array of counts
+            hexColorCount[index] = prominentColors[index].second
         }
 
         //Return the arrays
         switchToResults.putExtra("HexCode", hexColorString)
-        switchToResults.putExtra("HexCodeVal", prominentCol.first.toArgb())
-        switchToResults.putExtra("Count", prominentCol.second)
+        switchToResults.putExtra("HexCodeVal", hexColorValue)
+        switchToResults.putExtra("Count", hexColorCount)
 
-        Log.d(TAG, "HEXCODE COUNT: ${prominentCol.second}")
+        //Log.d(TAG, "HEXCODE COUNT: ${prominentCol.second}")
 
         startActivity(switchToResults)
     }
