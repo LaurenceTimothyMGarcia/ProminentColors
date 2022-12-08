@@ -216,11 +216,11 @@ class LoadingScreenActivity : AppCompatActivity()
                 }
                 //Checks if color rgb values is 5% greater or less than a color already
                 //existing in the hashmap
-                else if ((pixels[col].red() >= (mutableEntry.key.red() - 0.05) ||
+                else if ((pixels[col].red() >= (mutableEntry.key.red() - 0.05) &&
                             pixels[col].red() <= (mutableEntry.key.red() + 0.05)) &&
-                        (pixels[col].blue() >= (mutableEntry.key.blue() - 0.05) ||
+                        (pixels[col].blue() >= (mutableEntry.key.blue() - 0.05) &&
                                 pixels[col].blue() <= (mutableEntry.key.blue() + 0.05)) &&
-                        (pixels[col].green() >= (mutableEntry.key.green() - 0.05) ||
+                        (pixels[col].green() >= (mutableEntry.key.green() - 0.05) &&
                                 pixels[col].green() <= (mutableEntry.key.green() + 0.05)))
                 {
                     //Adds to existing color
