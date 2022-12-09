@@ -80,7 +80,8 @@
         android:id="@+id/selected_image"
         android:layout_width="75pt"
         android:layout_height="75pt"
-        android:scaleType="centerCrop">
-    </ImageView>
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:scaleType="centerCrop"></ImageView>
 
 </LinearLayout>
