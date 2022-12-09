@@ -36,7 +36,7 @@
             android:id="@+id/back_rank_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/ruby"
+            android:background="?attr/colorPrimary"
             android:padding="5dp"
             android:src="@drawable/left_icon">
         </ImageButton>
@@ -46,7 +46,8 @@
             android:id="@+id/color_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:gravity="center"
+            android:padding="12dp">
         </ImageView>
 
         <!-- Show Hexcode with most color -->
@@ -65,7 +66,7 @@
             android:id="@+id/forward_rank_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/ruby"
+            android:background="?attr/colorPrimary"
             android:padding="5dp"
             android:src="@drawable/right_icon">
         </ImageButton>

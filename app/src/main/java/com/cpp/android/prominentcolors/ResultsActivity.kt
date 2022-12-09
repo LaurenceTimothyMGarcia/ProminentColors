@@ -6,10 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
@@ -35,8 +32,8 @@ class ResultsActivity : AppCompatActivity()
     private lateinit var hexCodeCount: TextView
 
     //Buttons
-    private lateinit var colorRankBack: Button
-    private lateinit var colorRankFoward: Button
+    private lateinit var colorRankBack: ImageButton
+    private lateinit var colorRankForward: ImageButton
     private lateinit var copyToClipboard: Button
     private lateinit var useAppAgain: Button
 
@@ -76,7 +73,7 @@ class ResultsActivity : AppCompatActivity()
         useAppAgain = findViewById(R.id.use_again)
         hexCodeCount = findViewById(R.id.color_count)
         colorRankBack = findViewById(R.id.back_rank_button)
-        colorRankFoward = findViewById(R.id.forward_rank_button)
+        colorRankForward = findViewById(R.id.forward_rank_button)
 
 
         //GETS VALUES FROM BUNDLES
@@ -119,7 +116,7 @@ class ResultsActivity : AppCompatActivity()
         }
 
         //Moves down rank
-        colorRankFoward.setOnClickListener()
+        colorRankForward.setOnClickListener()
         {
             hexCodeRank++
 
