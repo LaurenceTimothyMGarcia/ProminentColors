@@ -64,7 +64,7 @@ class ResultsActivity : AppCompatActivity()
         hexColorCount = intent.getIntArrayExtra("HexCodeCount")!!
 
         //Create textview to show rank of color
-        colorRank.text = (hexCodeRank + 1).toString()
+        colorRank.text = "Rank: "+(hexCodeRank + 1).toString()
 
         //Gets hexcode text from bundle in loading
         hexCodeText.text = hexColorString[hexCodeRank]
@@ -91,7 +91,7 @@ class ResultsActivity : AppCompatActivity()
             }
 
             //Set all variables
-            colorRank.text = (hexCodeRank + 1).toString()
+            colorRank.text = "Rank: "+(hexCodeRank + 1).toString()
             hexCodeText.text = hexColorString[hexCodeRank]
             mostUsedColor.setColorFilter(hexColorValue[hexCodeRank])
             hexCodeCount.text = "Count: ${hexColorCount[hexCodeRank].toString()}"
@@ -108,7 +108,7 @@ class ResultsActivity : AppCompatActivity()
             }
 
             //Set all variables
-            colorRank.text = (hexCodeRank + 1).toString()
+            colorRank.text = "Rank: "+(hexCodeRank + 1).toString()
             hexCodeText.text = hexColorString[hexCodeRank]
             mostUsedColor.setColorFilter(hexColorValue[hexCodeRank])
             hexCodeCount.text = "Count: ${hexColorCount[hexCodeRank].toString()}"
