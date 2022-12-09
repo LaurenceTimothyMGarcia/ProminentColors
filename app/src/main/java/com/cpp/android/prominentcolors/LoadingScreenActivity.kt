@@ -190,10 +190,12 @@ class LoadingScreenActivity : AppCompatActivity()
         //Sets all array values to hashmap
         colorMapCounter(pixels)
 
-        //Find top 3 best colors
+        //Find top 5 best colors
+        prominentColors = prominentColors()
+
         //currently only finds highest color
-        prominentCol = prominentColors()
-        Log.d(TAG, "PromintentColor: $prominentCol")
+        //prominentCol = prominentColors()
+        //Log.d(TAG, "PromintentColor: $prominentCol")
 
     }
 
@@ -271,7 +273,7 @@ class LoadingScreenActivity : AppCompatActivity()
 
     //Goes through hashmap and gets largest values
     //Can adjust later to have a certain range
-    private fun prominentColors(): Pair<Color, Int>
+    private fun prominentColorsOld(): Pair<Color, Int>
     {
         //Search for most used colors
         //Probably assign it to a list/array
@@ -296,7 +298,7 @@ class LoadingScreenActivity : AppCompatActivity()
     }
 
     //Run through hashmap and get multiple values
-    private fun prominentColorsImproved(): LinkedList<Pair<Color, Int>>
+    private fun prominentColors(): LinkedList<Pair<Color, Int>>
     {
         //Search for top most used colors
         //place colors on linkedlist
