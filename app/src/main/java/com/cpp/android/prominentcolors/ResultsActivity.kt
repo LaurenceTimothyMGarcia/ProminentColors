@@ -17,7 +17,8 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import java.util.*
 
 const val AD_UNIT_ID = "ca-app-pub-3940256099942544/1033173712"
-//ca-app-pub-4397596950231574~8323092048
+//Test id
+//ca-app-pub-3940256099942544/1033173712
 
 class ResultsActivity : AppCompatActivity()
 {
@@ -184,14 +185,14 @@ class ResultsActivity : AppCompatActivity()
                 }
 
                 override fun onAdShowedFullScreenContent() {
-                    
+
                 }
             }
             mInterstitialAd?.show(this)
         }
         else
         {
-            Toast.makeText(this, "Ad wasn't loaded", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this, "Ad wasn't loaded", Toast.LENGTH_SHORT).show()
             switchToMain()
         }
     }
@@ -210,14 +211,14 @@ class ResultsActivity : AppCompatActivity()
                     mInterstitialAd = null
                     //mAdIsLoading = false
                     val error = "domain: ${adError.domain}, code: ${adError.code}, " + "message: ${adError.message}"
-                    Toast.makeText(this@ResultsActivity, "onAdFailedToLoad() with error $error", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this@ResultsActivity, "onAdFailedToLoad() with error $error", Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onAdLoaded(interstitialAd: InterstitialAd)
                 {
                     mInterstitialAd = interstitialAd
                     //mAdIsLoading = false
-                    Toast.makeText(this@ResultsActivity, "onAdLoaded()", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this@ResultsActivity, "onAdLoaded()", Toast.LENGTH_SHORT).show()
                 }
             }
         )
