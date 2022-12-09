@@ -9,6 +9,7 @@
 
     <!-- Results Page -->
     <string name="result_header">Most frequent color is...</string>
+    <string name="color_rank">Rank ##</string>
     <string name="result_hexcode">#HexCode</string>
     <string name="result_col_count">Color Count</string>
 

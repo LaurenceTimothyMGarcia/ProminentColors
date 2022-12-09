@@ -16,28 +16,69 @@
         android:textSize="28dp">
     </TextView>
 
+    <TextView
+        android:id="@+id/color_rank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="12dp"
+        android:text="@string/color_rank"
+        android:textSize="18dp">
+
+    </TextView>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center">
-            <!-- Place image showing the color here -->
-            <ImageView
-                android:id="@+id/color_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-            </ImageView>
+        <!-- Back Button -->
+        <!-- Temporary Buttons -->
+        <Button
+            android:id="@+id/back_rank_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </Button>
 
-            <!-- Show Hexcode with most color -->
-            <TextView
-                android:id="@+id/color_hexcode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="24dp"
-                android:text="@string/result_hexcode"
-                android:textSize="36dp">
-            </TextView>
+        <!-- Removed due to no placeholder image atm -->
+        <!--<ImageButton
+            android:id="@+id/back_rank_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </ImageButton>-->
+
+        <!-- Place image showing the color here -->
+        <ImageView
+            android:id="@+id/color_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+        </ImageView>
+
+        <!-- Show Hexcode with most color -->
+        <TextView
+            android:id="@+id/color_hexcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="24dp"
+            android:text="@string/result_hexcode"
+            android:textSize="36dp">
+        </TextView>
+
+        <!-- Forward Button -->
+        <!-- Temporary Buttons -->
+        <Button
+            android:id="@+id/forward_rank_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </Button>
+
+        <!-- Removed due to no placeholder image atm -->
+        <!--<ImageButton
+            android:id="@+id/forward_rank_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </ImageButton>-->
     </LinearLayout>
 
     <!-- Shows amount of times hexcode is called -->
