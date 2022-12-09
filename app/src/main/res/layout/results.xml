@@ -24,27 +24,22 @@
         android:padding="12dp"
         android:text="@string/color_rank"
         android:textSize="18dp">
-
     </TextView>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center">
-        <!-- Back Button -->
-        <!-- Temporary Buttons -->
-        <Button
-            android:id="@+id/back_rank_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-        </Button>
 
-        <!-- Removed due to no placeholder image atm -->
-        <!--<ImageButton
+        <!-- Back Button -->
+        <ImageButton
             android:id="@+id/back_rank_button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-        </ImageButton>-->
+            android:layout_height="wrap_content"
+            android:background="@color/ruby"
+            android:padding="5dp"
+            android:src="@drawable/left_icon">
+        </ImageButton>
 
         <!-- Place image showing the color here -->
         <ImageView
@@ -66,19 +61,14 @@
         </TextView>
 
         <!-- Forward Button -->
-        <!-- Temporary Buttons -->
-        <Button
+        <ImageButton
             android:id="@+id/forward_rank_button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-        </Button>
-
-        <!-- Removed due to no placeholder image atm -->
-        <!--<ImageButton
-            android:id="@+id/forward_rank_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-        </ImageButton>-->
+            android:layout_height="wrap_content"
+            android:background="@color/ruby"
+            android:padding="5dp"
+            android:src="@drawable/right_icon">
+        </ImageButton>
     </LinearLayout>
 
     <!-- Shows amount of times hexcode is called -->
@@ -89,7 +79,6 @@
         android:gravity="center"
         android:padding="24dp"
         android:text="@string/result_col_count">
-
     </TextView>
 
     <!-- Result Buttons -->
