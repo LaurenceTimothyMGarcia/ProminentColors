@@ -11,6 +11,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.ads.*
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import java.util.*
+
+const val AD_UNIT_ID = "ca-app-pub-3940256099942544/1033173712"
+//ca-app-pub-4397596950231574~8323092048
 
 class ResultsActivity : AppCompatActivity()
 {
@@ -40,12 +47,25 @@ class ResultsActivity : AppCompatActivity()
 
     private val TAG = "ResultsActivity"
 
+    //Advertisements
+    private var mInterstitialAd: InterstitialAd? = null
+    private var mAdIsLoading: Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
 
         //Loading XML file
         setContentView(R.layout.results)
+
+        //Initialize Mobile Ads SDK
+        MobileAds.initialize(this)
+        MobileAds.setRequestConfiguration(RequestConfiguration.Builder().setTestDeviceIds(Arrays.asList("ABCDEF012345")).build())
+        if (mInterstitialAd == null)
+        {
+            //mAdIsLoading = true
+            loadAd()
+        }
 
         //Sync UI var to UI elements
         colorRank = findViewById(R.id.color_rank)
@@ -123,7 +143,7 @@ class ResultsActivity : AppCompatActivity()
         //If click button, go to MainActivity
         useAppAgain.setOnClickListener()
         {
-            switchToMain()
+            showAd()
         }
     }
 
@@ -146,4 +166,60 @@ class ResultsActivity : AppCompatActivity()
         startActivity(switchToMain)
     }
 
+    private fun showAd()
+    {
+        if (mInterstitialAd != null)
+        {
+            mInterstitialAd?.fullScreenContentCallback = object: FullScreenContentCallback()
+            {
+                //Called when ad is dismissed
+                override fun onAdDismissedFullScreenContent() {
+                    mInterstitialAd = null
+                    loadAd()
+                    switchToMain()
+                }
+
+                override fun onAdFailedToShowFullScreenContent(adError: AdError) {
+                    mInterstitialAd = null
+                }
+
+                override fun onAdShowedFullScreenContent() {
+                    
+                }
+            }
+            mInterstitialAd?.show(this)
+        }
+        else
+        {
+            Toast.makeText(this, "Ad wasn't loaded", Toast.LENGTH_SHORT).show()
+            switchToMain()
+        }
+    }
+
+    private fun loadAd()
+    {
+        var adRequest = AdRequest.Builder().build()
+
+        InterstitialAd.load(
+            this,
+            AD_UNIT_ID,
+            adRequest,
+            object : InterstitialAdLoadCallback()
+            {
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    mInterstitialAd = null
+                    //mAdIsLoading = false
+                    val error = "domain: ${adError.domain}, code: ${adError.code}, " + "message: ${adError.message}"
+                    Toast.makeText(this@ResultsActivity, "onAdFailedToLoad() with error $error", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onAdLoaded(interstitialAd: InterstitialAd)
+                {
+                    mInterstitialAd = interstitialAd
+                    //mAdIsLoading = false
+                    Toast.makeText(this@ResultsActivity, "onAdLoaded()", Toast.LENGTH_SHORT).show()
+                }
+            }
+        )
+    }
 }
